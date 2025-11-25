@@ -427,6 +427,23 @@ traverse_iterator! {
     ReverseTraverse: last_child, previous_sibling
 }
 
+impl<'a, T> Node<'a, RefCell<T>> {
+    /// Shorthand for `node.data.borrow()`.
+    pub fn data(&self) -> Ref<'_, T> {
+        self.data.borrow()
+    }
+
+    /// Shorthand for `node.data.try_borrow()`.
+    pub fn try_data(&self) -> Result<Ref<'_, T>, BorrowError> {
+        self.data.try_borrow()
+    }
+
+    /// Shorthand for `node.data.borrow_mut()`.
+    pub fn data_mut(&self) -> RefMut<'_, T> {
+        self.data.borrow_mut()
+    }
+}
+
 #[test]
 fn it_works() {
     struct DropTracker<'a>(&'a Cell<u32>);
@@ -469,21 +486,4 @@ fn it_works() {
     }
 
     assert_eq!(drop_counter.get(), 10);
-}
-
-impl<'a, T> Node<'a, RefCell<T>> {
-    /// Shorthand for `node.data.borrow()`.
-    pub fn data(&self) -> Ref<'_, T> {
-        self.data.borrow()
-    }
-
-    /// Shorthand for `node.data.try_borrow()`.
-    pub fn try_data(&self) -> Result<Ref<'_, T>, BorrowError> {
-        self.data.try_borrow()
-    }
-
-    /// Shorthand for `node.data.borrow_mut()`.
-    pub fn data_mut(&self) -> RefMut<'_, T> {
-        self.data.borrow_mut()
-    }
 }
