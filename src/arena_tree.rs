@@ -62,7 +62,7 @@ impl<'a, T> Node<'a, T> {
     ///
     /// Typically, this node needs to be moved into an arena allocator
     /// before it can be used in a tree.
-    pub fn new(data: T) -> Node<'a, T> {
+    pub const fn new(data: T) -> Node<'a, T> {
         Node {
             parent: Cell::new(None),
             first_child: Cell::new(None),
