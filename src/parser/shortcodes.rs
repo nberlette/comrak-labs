@@ -2,6 +2,10 @@
 ///
 /// ("gemoji" name context: https://github.com/github/gemoji)
 #[derive(Debug, Clone, PartialEq, Eq)]
+#[cfg_attr(
+    feature = "serde",
+    derive(serde::Serialize, serde::Deserialize)
+)]
 pub struct NodeShortCode {
     /// The shortcode that was resolved, e.g. "rabbit".
     pub code: String,
