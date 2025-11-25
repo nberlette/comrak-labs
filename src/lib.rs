@@ -209,7 +209,7 @@ pub fn markdown_to_html_with_plugins(
 }
 
 /// Return the version of the crate.
-pub fn version() -> &'static str {
+pub const fn version() -> &'static str {
     env!("CARGO_PKG_VERSION")
 }
 
