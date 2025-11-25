@@ -886,6 +886,10 @@ pub struct BrokenLinkReference<'l> {
 #[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[cfg_attr(feature = "serde", serde(default))]
+#[cfg_attr(
+    all(target_arch = "wasm32", feature = "serde"),
+    serde(rename_all = "camelCase")
+)]
 /// Options for formatter functions.
 pub struct Render {
     /// [Soft line breaks](http://spec.commonmark.org/0.27/#soft-line-breaks) in the input
