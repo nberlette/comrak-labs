@@ -114,7 +114,7 @@ pub type ExtensionOptions<'c> = parser::options::Extension<'c>;
 pub type ParseOptions<'c> = parser::options::Parse<'c>;
 #[deprecated(
     since = "0.45.0",
-    note = "use `comrak::options::Render` instead of `comrak::RenderOptions `"
+    note = "use `comrak::options::Render` instead of `comrak::RenderOptions`"
 )]
 /// Deprecated alias: use [`options::Render`] instead of [`RenderOptions ]`.
 pub type RenderOptions = parser::options::Render;
@@ -127,7 +127,7 @@ pub type RenderOptions = parser::options::Render;
 pub type BrokenLinkReference<'l> = parser::options::BrokenLinkReference<'l>;
 #[deprecated(
     since = "0.45.0",
-    note = "use `comrak::options::ListStyleType` instead of `comrak::ListStyleType `"
+    note = "use `comrak::options::ListStyleType` instead of `comrak::ListStyleType`"
 )]
 /// Deprecated alias: use [`options::ListStyleType`] instead of [`ListStyleType ]`.
 pub type ListStyleType = parser::options::ListStyleType;
@@ -145,7 +145,7 @@ pub type Plugins<'p> = parser::options::Plugins<'p>;
 pub type RenderPlugins<'p> = parser::options::RenderPlugins<'p>;
 #[deprecated(
     since = "0.45.0",
-    note = "use `comrak::options::WikiLinksMode` instead of `comrak::WikiLinksMode `"
+    note = "use `comrak::options::WikiLinksMode` instead of `comrak::WikiLinksMode`"
 )]
 /// Deprecated alias: use [`options::WikiLinksMode`] instead of [`WikiLinksMode ]`.
 pub type WikiLinksMode = parser::options::WikiLinksMode;
@@ -167,7 +167,7 @@ pub type ParseOptionsBuilder<'c> = parser::options::ParseBuilder<'c>;
 #[cfg(feature = "bon")]
 #[deprecated(
     since = "0.45.0",
-    note = "use `comrak::options::RenderBuilder` instead of `comrak::RenderOptionsBuilder `"
+    note = "use `comrak::options::RenderBuilder` instead of `comrak::RenderOptionsBuilder`"
 )]
 /// Deprecated alias: use [`options::RenderBuilder`] instead of [`RenderOptionsBuilder ]`.
 pub type RenderOptionsBuilder = parser::options::RenderBuilder;
