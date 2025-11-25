@@ -16,6 +16,7 @@ use crate::adapters::SyntaxHighlighterAdapter;
 use crate::html;
 
 #[derive(Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 /// Syntect syntax highlighter plugin.
 pub struct SyntectAdapter {
     theme: Option<String>,
@@ -185,6 +186,7 @@ impl<'a, 's> Iterator for SyntectPreAttributesIter<'a, 's> {
 }
 
 #[derive(Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 /// A builder for [`SyntectAdapter`].
 ///
 /// Allows customization of `Theme`, [`ThemeSet`], and [`SyntaxSet`].
