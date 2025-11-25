@@ -9,12 +9,12 @@ use crate::parser::options::{Options, Plugins};
 
 const MAX_INDENT: u32 = 40;
 
-/// Formats an AST as HTML, modified by the given options.
+/// Formats an AST as XML, modified by the given options.
 pub fn format_document(root: Node<'_>, options: &Options, output: &mut dyn Write) -> fmt::Result {
     format_document_with_plugins(root, options, output, &Plugins::default())
 }
 
-/// Formats an AST as HTML, modified by the given options. Accepts custom plugins.
+/// Formats an AST as XML, modified by the given options. Accepts custom plugins.
 pub fn format_document_with_plugins(
     root: Node<'_>,
     options: &Options,
