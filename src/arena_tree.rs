@@ -45,6 +45,8 @@ mod serde_impls {
     /// all nodes in the tree and acts as a temporary arena for this purpose.
     #[derive(Default, Serialize, Deserialize)]
     struct WireNode<T> {
+        id: u32,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
         parent: Option<u32>,
         #[serde(default, skip_serializing_if = "Option::is_none")]
         previous_sibling: Option<u32>,
@@ -101,6 +103,7 @@ mod serde_impls {
                 nodes: ordered
                     .iter()
                     .map(|node| WireNode {
+                        id: index_for(Some(node)).unwrap(),
                         parent: index_for(node.parent()),
                         previous_sibling: index_for(node.previous_sibling()),
                         next_sibling: index_for(node.next_sibling()),
@@ -234,6 +237,7 @@ mod serde_impls {
                 r#"{
     "nodes": [
         {
+            "id": 0,
             "first_child": 1,
             "last_child": 1,
             "data": "root"
