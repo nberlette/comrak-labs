@@ -83,8 +83,7 @@ mod serde_impls {
         {
             // Force the borrow of `self` to match the lifetime carried by the
             // node so it can be threaded through the traversal.
-            let root: &'a Node<'a, T> =
-                unsafe { std::mem::transmute::<&Node<'a, T>, &'a Node<'a, T>>(self) };
+            let root: &'a Node<'a, T> = unsafe { std::mem::transmute::<_, &'a Node<'a, T>>(self) };
             let mut ordered = Vec::new();
             for node in root.descendants() {
                 ordered.push(node);
@@ -195,7 +194,7 @@ mod serde_impls {
             // remainder of the program. Since `T: 'a + 'de`, the data inside
             // the nodes also live for 'a. Thus, the whole tree rooted at
             // `root` lives for 'a; shortening the lifetime should be safe.
-            Ok(unsafe { core::mem::transmute::<&Node<'de, T>, &Node<'a, T>>(root) })
+            Ok(unsafe { core::mem::transmute::<_, &Node<'a, T>>(root) })
         }
     }
 
