@@ -355,27 +355,27 @@ impl<'a, T> Node<'a, T> {
     }
 
     /// Return a reference to the parent node, unless this node is the root of the tree.
-    pub fn parent(&self) -> Option<&'a Node<'a, T>> {
+    pub const fn parent(&self) -> Option<&'a Node<'a, T>> {
         self.parent.get()
     }
 
     /// Return a reference to the first child of this node, unless it has no child.
-    pub fn first_child(&self) -> Option<&'a Node<'a, T>> {
+    pub const fn first_child(&self) -> Option<&'a Node<'a, T>> {
         self.first_child.get()
     }
 
     /// Return a reference to the last child of this node, unless it has no child.
-    pub fn last_child(&self) -> Option<&'a Node<'a, T>> {
+    pub const fn last_child(&self) -> Option<&'a Node<'a, T>> {
         self.last_child.get()
     }
 
     /// Return a reference to the previous sibling of this node, unless it is a first child.
-    pub fn previous_sibling(&self) -> Option<&'a Node<'a, T>> {
+    pub const fn previous_sibling(&self) -> Option<&'a Node<'a, T>> {
         self.previous_sibling.get()
     }
 
     /// Return a reference to the next sibling of this node, unless it is a last child.
-    pub fn next_sibling(&self) -> Option<&'a Node<'a, T>> {
+    pub const fn next_sibling(&self) -> Option<&'a Node<'a, T>> {
         self.next_sibling.get()
     }
 
@@ -387,31 +387,31 @@ impl<'a, T> Node<'a, T> {
     /// Return an iterator of references to this node and its ancestors.
     ///
     /// Call `.next().unwrap()` once on the iterator to skip the node itself.
-    pub fn ancestors(&'a self) -> Ancestors<'a, T> {
+    pub const fn ancestors(&'a self) -> Ancestors<'a, T> {
         Ancestors(Some(self))
     }
 
     /// Return an iterator of references to this node and the siblings before it.
     ///
     /// Call `.next().unwrap()` once on the iterator to skip the node itself.
-    pub fn preceding_siblings(&'a self) -> PrecedingSiblings<'a, T> {
+    pub const fn preceding_siblings(&'a self) -> PrecedingSiblings<'a, T> {
         PrecedingSiblings(Some(self))
     }
 
     /// Return an iterator of references to this node and the siblings after it.
     ///
     /// Call `.next().unwrap()` once on the iterator to skip the node itself.
-    pub fn following_siblings(&'a self) -> FollowingSiblings<'a, T> {
+    pub const fn following_siblings(&'a self) -> FollowingSiblings<'a, T> {
         FollowingSiblings(Some(self))
     }
 
     /// Return an iterator of references to this node’s children.
-    pub fn children(&'a self) -> Children<'a, T> {
+    pub const fn children(&'a self) -> Children<'a, T> {
         Children(self.first_child.get())
     }
 
     /// Return an iterator of references to this node’s children, in reverse order.
-    pub fn reverse_children(&'a self) -> ReverseChildren<'a, T> {
+    pub const fn reverse_children(&'a self) -> ReverseChildren<'a, T> {
         ReverseChildren(self.last_child.get())
     }
 
@@ -422,7 +422,7 @@ impl<'a, T> Node<'a, T> {
     ///
     /// *Similar Functions:* Use `traverse()` or `reverse_traverse` if you need
     /// references to the `NodeEdge` structs associated with each `Node`
-    pub fn descendants(&'a self) -> Descendants<'a, T> {
+    pub const fn descendants(&'a self) -> Descendants<'a, T> {
         Descendants(self.traverse())
     }
 
@@ -432,7 +432,7 @@ impl<'a, T> Node<'a, T> {
     /// `NodeEdge` enums represent the `Start` or `End` of each node.
     ///
     /// *Similar Functions:* Use `descendants()` if you don't need `Start` and `End`.
-    pub fn traverse(&'a self) -> Traverse<'a, T> {
+    pub const fn traverse(&'a self) -> Traverse<'a, T> {
         Traverse {
             root: self,
             next: Some(NodeEdge::Start(self)),
@@ -445,7 +445,7 @@ impl<'a, T> Node<'a, T> {
     /// `NodeEdge` enums represent the `Start` or `End` of each node.
     ///
     /// *Similar Functions:* Use `descendants()` if you don't need `Start` and `End`.
-    pub fn reverse_traverse(&'a self) -> ReverseTraverse<'a, T> {
+    pub const fn reverse_traverse(&'a self) -> ReverseTraverse<'a, T> {
         ReverseTraverse {
             root: self,
             next: Some(NodeEdge::End(self)),
