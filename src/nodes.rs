@@ -795,10 +795,18 @@ pub struct Ast {
     /// The positions in the source document this node comes from.
     pub sourcepos: Sourcepos,
 
+    #[cfg_attr(
+        feature = "serde",
+        serde(skip_serializing_if = "String::is_empty", default)
+    )]
     pub(crate) content: String,
+    #[cfg_attr(feature = "serde", serde(default))]
     pub(crate) open: bool,
+    #[cfg_attr(feature = "serde", serde(default))]
     pub(crate) last_line_blank: bool,
+    #[cfg_attr(feature = "serde", serde(default))]
     pub(crate) table_visited: bool,
+    #[cfg_attr(feature = "serde", serde(default))]
     pub(crate) line_offsets: Vec<usize>,
 }
 
