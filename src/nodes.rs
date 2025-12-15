@@ -261,6 +261,7 @@ pub enum NodeValue {
     feature = "serde",
     derive(serde::Serialize, serde::Deserialize)
 )]
+#[cfg_attr(feature = "serde", serde(rename_all = "snake_case"))]
 pub enum TableAlignment {
     /// Cell content is unaligned.
     None,
@@ -408,6 +409,7 @@ pub struct NodeDescriptionItem {
     feature = "serde",
     derive(serde::Serialize, serde::Deserialize)
 )]
+#[cfg_attr(feature = "serde", serde(rename_all = "snake_case"))]
 pub enum ListType {
     /// A bullet list, i.e. an unordered list.
     #[default]
@@ -423,6 +425,7 @@ pub enum ListType {
     feature = "serde",
     derive(serde::Serialize, serde::Deserialize)
 )]
+#[cfg_attr(feature = "serde", serde(rename_all = "snake_case"))]
 pub enum ListDelimType {
     /// A period character `.`.
     #[default]
@@ -784,10 +787,7 @@ impl NodeValue {
 /// The struct contains metadata about the node's position in the original document, and the core
 /// enum, `NodeValue`.
 #[derive(Clone, PartialEq, Eq)]
-#[cfg_attr(
-    feature = "serde",
-    derive(serde::Serialize, serde::Deserialize)
-)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Ast {
     /// The node value itself.
     pub value: NodeValue,
